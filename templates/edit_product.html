@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Product
+{% endblock %}
+
+{% block main %}
+<div class="p-1 bg-secondary text-white" style="font-size:150%">Edit Product</div>
+    <div>
+    <img src="{{url_for('static',filename='product_images/' + row[0].image)}}"  alt="{{row[0]['image']}}">
+    </div>
+    <br>
+    <form action="/edit_product?product_id={{row[0].product_id}}" id="e-product" method="post">
+        <div class="form-group">
+            Product Name : <input  autofocus class="form-control" name="product_name" value={{row[0].product_name}} type="text" readonly />
+        </div>
+
+        <div class="form-group">
+           Brand : <input autofocus class="form-control" name="brand" value={{row[0].brand}} type="text"readonly/>
+        </div>
+
+        <div class="form-group">
+           Short description : <input autofocus class="form-control" name="description" value="{{row[0].description}}" type="text"readonly/>
+        </div>
+
+        <div class="form-group">
+           Stock(Qty) : <input autofocus class="form-control" name="stock" value={{row[0].stock}} type="number" min = "1"readonly/>
+        </div>
+
+        <div class="form-group">
+           Max. Retail price : <input autofocus class="form-control" name="mrp" value={{row[0].mrp}} type="number"readonly/>
+        </div>
+
+        <div class="form-group">
+           Selling Price : <input autofocus class="form-control" name="price" value={{row[0].price}} type="number" readonly/>
+        </div>
+
+
+         <div >
+             <button class="btn btn-primary" type="submit" id="p-save" style="display:none">Save</button> &nbsp&nbsp&nbsp&nbsp
+             <button class="btn btn-primary" type="button" id="p-edit" style="cursor: pointer">Edit</button>
+             <a class="btn btn-primary" type="button" href="/delete?product_id={{row[0].product_id}}&image={{row[0].image}}" style="cursor: pointer">Delete</a>
+     </div>
+    </form>
+    <script>
+        $(document).ready (function(){
+
+            $("#p-edit").click(function(){
+            $('input[type=text]').removeAttr('readonly');
+            $('input[type=number]').removeAttr('readonly');
+            $("#p-edit").hide();
+            $('#p-save').show();
+
+
+        });});
+    </script>
+
+{% endblock %}

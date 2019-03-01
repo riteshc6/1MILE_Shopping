@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Product
+{% endblock %}
+
+{% block main %}
+<div class="p-1 mb-2 bg-secondary text-white" style="font-size:150%">Add Product</div>
+    <form action="/add_product" method="post" enctype="multipart/form-data" id="p_form">
+
+
+
+        <div class="form-group">
+            Product Name : <input autofocus class="form-control" name="product_name" placeholder="Product Name" type="text"/>
+        </div>
+
+        <div class="form-group">
+           Brand : <input autofocus class="form-control" name="brand" placeholder="Brand Name" type="text"/>
+        </div>
+
+        <div class="form-group" >
+            Upload Image : <input autofocus class="form-control" name="image" type="file" accept="image/*">
+        </div>
+        <div class="form-group">
+           Short description : <input autofocus class="form-control" name="description" placeholder="Describe Your product" type="text"/>
+        </div>
+
+        <div class="form-group">
+           Stock(Qty) : <input autofocus class="form-control" name="stock" placeholder="Stock" type="number" min = "1"/>
+        </div>
+
+        <div class="form-group">
+           Max. Retail price : <input autofocus class="form-control" name="mrp" placeholder="MRP" type="number"/>
+        </div>
+
+        <div class="form-group">
+           Selling Price : <input autofocus class="form-control" name="price" placeholder="price" type="number" />
+        </div>
+
+        <div>
+        Do You Want to offer Order & Pick Service on this product? <input autofocus class="form-control" name="order_pick" value="yes"  type="radio" />Yes &nbsp;
+                                                                   <input autofocus class="form-control" name="order_pick" value="no"  type="radio"/>No
+        </div>
+
+        <div class="form-group" >
+        Do You Want to offer Home Delivery Service on this product? <input autofocus class="form-control" name="delivery" id="yes" value="yes" type="radio"/>Yes &nbsp;
+                                                                   <input autofocus class="form-control" name="delivery"  value="no" type="radio"/>No
+
+        <div id="delivery_time" style="display : none;" >
+                 Delivery Time after order :  <input name="delivery_time" type="text" placeholder="Time taken to deliver" />
+         </div>
+        </div>
+
+
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Shop
+{% endblock %}
+
+{% block main %}
+<div class="p-1 bg-secondary text-white"><h6>Order History </h6></div>
+<table class="table table-hover">
+
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Order Id</th>
+              <th scope="col">Product Id</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Shop Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Order Type</th>
+              <th scope="col">Status</th>
+              <th scope="col">Delivery Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in rows|sort(attribute='order_id',reverse=True) %}
+            <tr>
+             <th scope="row">{{loop.index}}</th>
+              <td>{{row.order_id}}</td>
+              <td>{{row.product_id}}</td>
+              <td>{{row.product_name}}</td>
+              <td>{{shop_name[loop.index0]['shop_name']}}</td>
+              <td>{{row.price}}</td>
+              <td>{{row.date}}</td>
+              <td>{{row.time}}</td>
+              <td>{{row.order_type}}</td>
+              <td>{{row.status}}</td>
+              {% if row.delivery_time %}
+              <td>{{row.delivery_time}}</td>
+              {% else %}
+              <td>Waiting</td>
+              {% endif %}
+            </tr>
+           {% endfor %}
+            </tbody>
+        </table>
+
+
+{% endblock %}

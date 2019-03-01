@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    LogIn
+{% endblock %}
+
+{% block main %}
+<div class="p-1 bg-secondary text-white" style="font-size:150%">Buyers Login to Shop in your Locality </div>
+
+<footer class="blockquote-footer">For Best Experience use Desktop or use in Desktop mode on Mobile</footer><br>
+    <form action="/user_login" id="form" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="user_phone" placeholder="Phone Number" type="text"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password"/>
+        </div>
+        <button class="btn btn-primary" type="submit" style="cursor:pointer">Log In</button>
+
+    </form>
+    <br>
+    New Users click <a class="btn btn-primary" href="/user_register">Register</a> to open your account<br><br>
+    Are You A Seller? Click on <a class="btn btn-primary" href="/seller_login">Sell on 1MILE</a>
+<br>
+<br>
+
+
+
+{% endblock %}

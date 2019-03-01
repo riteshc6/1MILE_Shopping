@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirmation
+{% endblock %}
+
+{% block main %}
+    <h3>You are successfully registered</h3>
+    {% if user_phone %}
+    <h1>Your User_id is your Phone Number : {{ user_phone }}<br> In future You will use your phone number to login to your account </h1>
+    {% endif %}
+    {% if seller_phone %}
+    <h1>Your Seller_id is your Phone Number {{ seller_phone }}<br> In future you will use your phone number to login to your Seller account</h1>
+    {% endif %}
+
+
+
+{% endblock %}

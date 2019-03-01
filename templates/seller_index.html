@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}
+<div class="p-1 bg-secondary text-white" style="font-size:150%">Pending Orders</div>
+<table class="table table-hover">
+
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Order Id</th>
+
+              <th scope="col">Product Name</th>
+
+              <th scope="col">User Address</th>
+              <th scope="col">Price</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Order Type</th>
+              <th scope="col">Reply</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in rows %}
+            <tr>
+             <th scope="row">{{loop.index}}</th>
+              <td>{{row.order_id}}</td>
+              <td>{{row.product_name}}</td>
+              <td>{{users[loop.index0]['street_name']}},{{users[loop.index0]['pin']}}</td>
+              <td>{{row.price}}</td>
+              <td>{{row.date}}</td>
+              <td>{{row.time}}</td>
+              <td>{{row.order_type}}</td>
+              <td> <a href= "/accept_order?order_id={{row.order_id}}&order_type={{row.order_type}}&product_id={{row.product_id}}&user_phone={{row.user_phone}}" class="btn btn-primary" > Accept Order </a> </td>
+
+            </tr>
+           {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

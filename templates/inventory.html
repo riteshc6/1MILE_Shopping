@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Shop
+{% endblock %}
+
+{% block main %}
+<div class="p-1 bg-secondary text-white" style="font-size:150%">Inventory</div>
+<table class="table table-hover">
+
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+
+              <th scope="col">Product Name</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Description</th>
+              <th scope="col">MRP</th>
+              <th scope="col">Price</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Order & pick</th>
+              <th scope="col">Delivery</th>
+              <th scope="col">Delivery Time</th>
+              <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in rows %}
+            <tr class='clickable-row' style="cursor:pointer" data-url="/edit_product?product_id={{row.product_id}}">
+              <td scope="row"><img alt="{{row.product_name}}" src="{{url_for('static',filename='product_images/' + row.image)}}" class="img-thumbnail-fluid"></td>
+              <td>{{row.product_name}}</td>
+              <td>{{row.brand}}</td>
+              <td>{{row.description}}</td>
+              <td>{{row.mrp}}</td>
+              <td>{{row.price}}</td>
+              <td>{{row.stock}}</td>
+              <td>{{row.order_pick}}</td>
+              <td>{{row.delivery}}</td>
+              <td>{{row.delivery_time}}</td>
+               <td><a class="btn btn-primary" type="button" href="/delete?product_id={{row.product_id}}&image={{row.image}}" style="cursor: pointer">Delete</a></td>
+            </tr>
+           {% endfor %}
+            </tbody>
+        </table>
+   <script>
+        $(document).ready(function() {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data('url');
+    });
+});
+</script>
+{% endblock %}

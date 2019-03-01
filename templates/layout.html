@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- Required meta tags -->
+
+        <meta name="viewport" content=" width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
+
+        <!-- documentation at http://getbootstrap.com/docs/4.0/, alternative themes at https://bootswatch.com/4-alpha/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- <a href='https://dryicons.com/icon/mobile-shopping-cart-vector-icon-8644'> Icon by Dryicons </a> -->
+        <link href="/static/favicon.ico" rel="icon">
+
+        <!-- http://handlebarsjs.com/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+        <link href="/static/styles.css" rel="stylesheet"/>
+
+        <!-- http://jquery.com/ -->
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgatq4KgsR2NHXXIG8YxiwncrsEz_xis8"></script>
+
+<script src="/static/user_register.js"></script>
+
+
+
+         <!-- https://github.com/corejavascript/typeahead.js/blob/master/doc/jquery_typeahead.md -->
+        <script src="https://cdn.rawgit.com/corejavascript/typeahead.js/master/dist/typeahead.jquery.js"></script>
+
+
+            <script src="/static/seller_register.js"></script>
+            <script src="/static/seller_login.js"></script>
+            <script src="/static/add_product.js"></script>
+            <script src="/static/user_profile.js"></script>
+            <script src="/static/seller_profile.js"></script>
+
+          <!-- app's own JavaScript -->
+       <!-- <script src="/static/scripts.js"></script> -->
+
+
+        <title>1MILE Shopping: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-sm navbar-light bg-light border">
+        {% if session.seller_phone %}
+            <a class="navbar-brand" href= "/seller_index"><span class="blue">1</span><span class="red">M</span><span class="yellow">I</span><span class="green">L</span><span class="blue">E</span> <span class="red">Selling</span></a>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        {% else %}
+        <a class="navbar-brand" href="/"><span class="blue">1</span><span class="red">M</span><span class="yellow">I</span><span class="green">L</span><span class="blue">E</span> <span class="red">Shopping</span></a>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        {% endif %}
+            <div class="collapse navbar-collapse" id="navbar">
+                {% if session.user_phone %}
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/user_orders">Orders</a></li>
+                       <li class="nav-item"><a class="nav-link" href="/user_profile">Profile</a></li>
+
+                       <li class="nav-item"><a class="nav-link" href="/user_password">Change Password</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                {% elif session.seller_phone %}
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/inventory">Inventory</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/add_product">Add Product</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/seller_profile">Profile</a></li>
+                         <li class="nav-item"><a class="nav-link" href="/seller_password">Change Password</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/seller_login">Sell on 1mile</a></li>
+                    </ul>
+                {% endif %}
+
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary border text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    <!-- Fill viewport -->
+
+
+
+    </body>
+
+</html>

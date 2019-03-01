@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}
+<a class="btn btn-primary btn-md mr-2" style="float:right" href="#map-canvas" role="button">Explore Shops on Map</a>
+     <h4>Shops Nearby</h4>   <footer class="blockquote-footer">Distances are calculated using the Geo Location you Selected for Account Registration, to edit goto profile page</footer>
+
+         <table class="table table-hover">
+
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Shop Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email_id</th>
+              <th scope="col">Distance</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in rows%}
+            <tr class='clickable-row'  style="cursor: pointer" data-url="/shop?seller_phone={{row.seller_phone}}&shop_name={{row.shop_name}}">
+              <th scope="row"><img alt="{{row.shop_name}}" src="{{url_for('static',filename='shop_images/' + row.image)}}" class="img-thumbnail-fluid"></th>
+              <td>{{row.shop_name}}</td>
+              <td>{{row.street_name}}</td>
+              <td>{{row.seller_phone}}</td>
+              <td>{{row.email}}</td>
+              <td>{{row.distance}} Km</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+        <div class="p-3 bg-secondary text-white font-weight-bold" style="font-size:150%" >Map Shopping</div>
+        <div clas="container">
+        <div class="row justify-content-md-center">
+        <div id="map-canvas"  style="height:400px; width:100%"> </div>
+        </div>
+        </div>
+
+
+            <script src="/static/index.js"></script>
+{% endblock %}

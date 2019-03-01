@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    product
+{% endblock %}
+
+{% block main %}
+<div class="p-1 mb-2 bg-secondary text-white" style="font-size:200%">{{row[0].product_name}}</div>
+<div>
+
+    <div>
+    <img src="{{url_for('static',filename='product_images/' + row[0].image)}}"  alt="{{row[0]['image']}}">
+    </div>
+   <br> <div class="blockquote">
+     Brand Name :  {{row[0].brand}} <br>
+     Description : {{row[0].description}}<br>
+     Product MRP : {{row[0].mrp}}<br>
+     Product Price : {{row[0].price}}<br>
+     product Id : {{row[0].product_id}}<br>
+     Normal Delivery Time : {{row[0].delivery_time}}
+    </div>
+</div>
+
+   <a href= "/user_orders?product_id={{row[0].product_id}}&order_type=order_pick" class="btn btn-primary" > Order & Pick from Shop</a> &nbsp  &nbsp
+   <a href= "/user_orders?product_id={{row[0].product_id}}&order_type=delivery" class="btn btn-primary" > Request Delivery </a>
+{% endblock %}

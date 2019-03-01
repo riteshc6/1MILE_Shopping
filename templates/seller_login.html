@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Seller Log In
+{% endblock %}
+
+{% block main %}
+<div class="p-1 bg-secondary text-white" style="font-size:150%">Login to Your Seller Account </div>
+
+    <br>
+    <form action="/seller_login" id=s_form method="post">
+        <div class="form-group">
+            <input autofocus class="form-control" name="seller_phone" placeholder="Seller Phone Number" type="text"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password"/>
+        </div>
+        <button class="btn btn-primary" type="submit" style="cursor:pointer">Log In</button>
+    </form>
+    <br> Are You a New Seller? <a class="btn btn-primary" href="/seller_register">Register</a> with us to sell
+
+{% endblock %}
